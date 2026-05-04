@@ -2,11 +2,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "ol/ol.css";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import "highcharts/highcharts-more";
-import "highcharts/modules/windbarb";
-import "highcharts/modules/exporting";
-import "highcharts/modules/export-data";
-import "highcharts/modules/accessibility";
 import Map from "ol/Map";
 import View from "ol/View";
 import GeoJSON from "ol/format/GeoJSON";
@@ -479,12 +474,13 @@ export default function App() {
           yAxis: 2,
         },
         {
-          type: "windbarb",
-          name: "Wind direction",
-          data: forecastData.wdir.map((direction, index) => [index, forecastData.wspd[index] ?? 0, direction]),
+          type: "line",
+          name: "Wind direction (deg)",
+          data: forecastData.wdir,
           yAxis: 0,
-          color: "#0f172a",
-        } as Highcharts.SeriesOptionsType,
+          color: "#f59e0b",
+          dashStyle: "ShortDot",
+        },
       ],
       credits: { enabled: false },
     };
